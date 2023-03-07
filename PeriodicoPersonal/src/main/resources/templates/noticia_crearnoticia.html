@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Toda Noticias</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">Portal Noticias</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" th:href="@{/}">Noticias</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/noticia/crearnoticia}">Crear Noticia</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/noticia/listanoticias}">Todas Las Noticias</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        
+        <form th:action="@{/noticia/noticiacreada}" method="POST" name="crear" class="m-5 text-center" enctype="multipart/form-data">
+            <h2>Cargar Noticia</h2>
+            <div class="mb-3">
+                <label for="disabledTextInput" class="form-label">Titulo</label>
+                <input type="text" id="disabledTextInput" class="form-label ms-auto" name="titulo" placeholder="Titulo De La Noticia">
+            </div>
+            <div class="mb-3">
+                <label for="disabledTextInput" class="form-label">Cuerpo de Noticia</label><br>
+                <textarea name="cuerpo" rows="10" cols="40" id="disabledTextInput" class="form-label ms-auto" placeholder="Escribe Aqui!!"></textarea>
+            </div>
+            </div>
+          <div class="mb-3">
+            <label for="formFile" class="form-label">Cargar imagen del producto</label>
+            <input class="form-control" type="file" name="img" id="formFile">
+          </div>
+            <button type="submit" class="btn btn-success btn-lg">Enviar</button>
+            <button type="reset" class="btn btn-secondary btn-sm">Limpiar</button>
+            
+
+            <div th:if="${error != null}" class="card text-white bg-danger mb-3 mensajeError" >
+                <div class="card-body">
+                    <h5 class="card-title">Error!!!</h5>
+                    <p class="card-text" th:text="${error}"></p>
+                </div>
+            </div>
+            <!--
+            <div th:if="${exito != null}" class="card text-white bg-success mb-3 mt-3 mensajeExito" >
+                <div class="card-body">
+                    <h5 class="card-title">Exito!!!</h5>
+                    <p class="card-text" th:text="${exito}"></p>
+                </div>
+            </div>
+            -->
+        </form>
+    </body>
+</html>
